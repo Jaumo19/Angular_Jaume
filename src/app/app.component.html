@@ -1,0 +1,41 @@
+<h1>CRUD Usuarios</h1>
+<table cellspacing="0">
+    <tr class="titulo">
+        <td>ID</td>
+        <td>Nombre</td>
+        <td>Edad</td>
+    </tr>
+    <tr *ngFor="let user of users">
+        <td>{{user.id}}</td>
+        <td>{{user.name}}</td>
+        <td>{{user.age}}</td>
+        <td><p (click)="removeUsers(user.id)">Eliminar</p></td>
+    </tr>
+</table>
+
+<div class="añadir_usuario">
+    <h2>Añadir usuario</h2>
+    <form #simpleForm="ngForm" (ngSubmit)="addUser()">
+        <label for="nombre">Nombre: </label><br>
+        <input type="text" id="nombre" [(ngModel)]="userData.nombre" name="nombre"><br>
+        <label for="edad">Edad: </label><br>
+        <input type="number" id="edad" [(ngModel)]="userData.edad" name="edad" ><br><br>
+        <button>Añadir Usuario</button>
+    </form>
+</div>
+
+<div class="editar_usuario">
+  <h2>Editar usuario</h2>
+  <form #simpleForm2="ngForm" (ngSubmit)="editUser()">
+    <label for="id">ID:</label>
+    <select id="id" [(ngModel)]="userEditar.id" name="id">
+      <option value="id_user" *ngFor="let user of users" [value]="user.id">{{user.id}}</option>
+    </select>
+    <label for="nombre">Nombre: </label><br>
+    <input type="text" id="nombre_editar" [(ngModel)]="userEditar.nombre" name="nombre"><br>
+    <label for="edad">Edad: </label><br>
+    <input type="number" id="edad" [(ngModel)]="userEditar.edad" name="edad" ><br><br>
+    <button>Añadir Usuario</button>
+  </form>
+</div>
+
